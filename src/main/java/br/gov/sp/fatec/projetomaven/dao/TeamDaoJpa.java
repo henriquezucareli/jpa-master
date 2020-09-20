@@ -3,17 +3,16 @@ package br.gov.sp.fatec.projetomaven.dao;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceException;
 
-import br.gov.sp.fatec.projetomaven.entity.Conference;
 import br.gov.sp.fatec.projetomaven.entity.Team;
+import br.gov.sp.fatec.projetomaven.entity.enums.ConferenceEnum;
 
 public class TeamDaoJpa implements TeamDao {
     
     private EntityManager em;
 
     @Override
-    public Team registerTeam(String teamId, String teamCity, String teamName, Conference teamConference) {
+    public Team registerTeam(String teamCity, String teamName, ConferenceEnum teamConference) {
         Team team = new Team();
-        team.setTeamId(teamId);
         team.setTeamCity(teamCity);
         team.setTeamName(teamName);
         team.setTeamConference(teamConference);

@@ -5,9 +5,9 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.Table;
 import java.util.Date;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -22,7 +22,7 @@ public abstract class Roster {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ros_id")
-    private long rosterId;
+    private Long rosterId;
     @Column(name = "ros_first_name")
     private String rosterFirstName;
     @Column(name = "ros_last_name")
@@ -35,11 +35,11 @@ public abstract class Roster {
     @JoinColumn(name = "tea_id")
     private Team rosterTeam;
 
-    public long getRosterId() {
+    public Long getRosterId() {
         return rosterId;
     }
 
-    public void setRosterId(long rosterId) {
+    public void setRosterId(Long rosterId) {
         this.rosterId = rosterId;
     }
 

@@ -2,6 +2,7 @@ package br.gov.sp.fatec.projetomaven.dao;
 
 import br.gov.sp.fatec.projetomaven.entity.Player;
 import br.gov.sp.fatec.projetomaven.entity.Team;
+import br.gov.sp.fatec.projetomaven.entity.enums.PositionEnum;
 import br.gov.sp.fatec.projetomaven.entity.PersistenceManager;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceException;
@@ -21,7 +22,7 @@ public class PlayerDaoJpa implements PlayerDao {
     }
 
     @Override
-    public Player registerPlayer(String firstName, String lastName, String position, float salary, Date born, Team team) {
+    public Player registerPlayer(String firstName, String lastName, PositionEnum position, float salary, Date born, Team team) {
         Player player = new Player();
         player.setRosterFirstName(firstName);
         player.setRosterLastName(lastName);

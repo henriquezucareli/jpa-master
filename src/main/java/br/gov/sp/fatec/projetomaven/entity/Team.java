@@ -1,21 +1,24 @@
 package br.gov.sp.fatec.projetomaven.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.FetchType;
 
+import br.gov.sp.fatec.projetomaven.entity.enums.ConferenceEnum;
+
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Table(name = "tea_team")
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
 public class Team {
     
     @Id
@@ -26,9 +29,15 @@ public class Team {
     private String teamCity;
     @Column(name = "tea_name")
     private String teamName;
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "con_name")
-    private Conference teamConference;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "tea_conference")
+    private ConferenceEnum teamConference;
+    @OneToMany(mappedBy = "rosterTeam")
+    private List<Player> players;
+    @OneToMany(mappedBy = "rosterTeam")
+    private List<Staff> staffs;
+    @ManyToMany(mappedBy = "historic")
+    private List<Player> historic;
 
     public String getTeamId() {
         return teamId;
@@ -54,12 +63,20 @@ public class Team {
         this.teamName = teamName;
     }
 
-    public Conference getTeamConference() {
+    public ConferenceEnum getTeamConference() {
         return teamConference;
     }
 
-    public void setTeamConference(Conference teamConference) {
+    public void setTeamConference(ConferenceEnum teamConference) {
         this.teamConference = teamConference;
+    }
+
+    public List<Player> getPlayers() {
+        return players;
+    }
+
+    public List<Staff> getStaffs() {
+        return staffs;
     }
     
 }
