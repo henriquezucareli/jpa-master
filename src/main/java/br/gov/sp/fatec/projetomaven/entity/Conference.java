@@ -10,4 +10,14 @@ public class Conference {
     
     @Column(name = "con_name")
     private String conference;
+
+    public String getConference() {
+        return conference;
+    }
+
+    public void setConference(String conference) {
+        this.conference = conference;
+    }
+
+    
 }

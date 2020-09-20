@@ -7,10 +7,20 @@ import javax.persistence.Table;
 
 @Table(name = "pla_player")
 @Entity
-@PrimaryKeyJoinColumn(name = "ros_id")
+@PrimaryKeyJoinColumn(name = "pla_id")
 public class Player extends Roster{
     
     @Column(name = "pla_position")
     private String playerPosition;
+
+    public String getPlayerPosition() {
+        return playerPosition;
+    }
+
+    public void setPlayerPosition(String playerPosition) {
+        this.playerPosition = playerPosition;
+    }
+
+    
 
 }

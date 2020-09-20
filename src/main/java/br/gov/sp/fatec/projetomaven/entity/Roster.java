@@ -35,5 +35,52 @@ public abstract class Roster {
     @JoinColumn(name = "tea_id")
     private Team rosterTeam;
 
+    public long getRosterId() {
+        return rosterId;
+    }
+
+    public void setRosterId(long rosterId) {
+        this.rosterId = rosterId;
+    }
+
+    public String getRosterFirstName() {
+        return rosterFirstName;
+    }
+
+    public void setRosterFirstName(String rosterFirstName) {
+        this.rosterFirstName = rosterFirstName;
+    }
+
+    public String getRosterLastName() {
+        return rosterLastName;
+    }
+
+    public void setRosterLastName(String rosterLastName) {
+        this.rosterLastName = rosterLastName;
+    }
+
+    public float getRosterSalary() {
+        return rosterSalary;
+    }
+
+    public void setRosterSalary(float rosterSalary) {
+        this.rosterSalary = rosterSalary;
+    }
+
+    public Date getRosterBorn() {
+        return rosterBorn;
+    }
+
+    public void setRosterBorn(Date rosterBorn) {
+        this.rosterBorn = rosterBorn;
+    }
+
+    public Team getRosterTeam() {
+        return rosterTeam;
+    }
+
+    public void setRosterTeam(Team rosterTeam) {
+        this.rosterTeam = rosterTeam;
+    }
 
 }

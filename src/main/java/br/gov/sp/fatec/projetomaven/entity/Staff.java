@@ -12,6 +12,16 @@ import javax.persistence.Table;
 public class Staff extends Roster{
     
     @Column(name = "sta_function")
-    private String staFunction;
+    private String staffFunction;
+
+    public String getStaFunction() {
+        return staffFunction;
+    }
+
+    public void setStaffFunction(String staffFunction) {
+        this.staffFunction = staffFunction;
+    }
+
+    
 
 }
