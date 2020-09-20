@@ -35,7 +35,7 @@ public class PersistenceManager {
     }
     
     private void createEntityManagerFactory() {
-        emf = Persistence.createEntityManagerFactory("avaliacao");
+        emf = Persistence.createEntityManagerFactory("nba_organization");
     }
 
 }
