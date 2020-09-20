@@ -25,11 +25,13 @@ create table tea_team (
 
 create table ros_roster (
   ros_id bigint unsigned primary key auto_increment,
-  ros_roster_first_name varchar(50) not null,
-  ros_roster_last_name varchar(50) not null,
+  ros_first_name varchar(50) not null,
+  ros_last_name varchar(50) not null,
   ros_salary float not null,
-  ros_roster_born datetime not null,
-  ros_team varchar(3) references tea_team
+  ros_born datetime not null,
+  ros_team varchar(3) not null,
+  constraint ros_tea_fk foreign key (ros_team)
+    references tea_team (tea_id)
 );
 
 create table pla_player (
