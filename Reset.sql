@@ -11,11 +11,11 @@ create user 'user'@'localhost' identified by 'pass123';
 grant select, insert, delete, update on nba_organization.* to user@'localhost';
 
 create table con_conference (
-    con_name varchar(4) unsigned primary key
+    con_name varchar(4) primary key
 );
 
 create table tea_team (
-    tea_id varchar(3) unsigned primary key,
+    tea_id varchar(3) primary key,
     tea_city varchar(30) not null,
     tea_name varchar(30) not null,
     tea_conference varchar (4) not null,
@@ -29,10 +29,7 @@ create table ros_roster (
   ros_roster_last_name varchar(50) not null,
   ros_salary float not null,
   ros_roster_born datetime not null,
-  ros_team varchar(3),
-  constraint ros_tea_fk foreign key (ros_team)
-    references tea_team (team_id)
-
+  ros_team varchar(3) references tea_team
 );
 
 create table pla_player (
