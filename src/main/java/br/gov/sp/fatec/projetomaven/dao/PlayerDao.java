@@ -1,10 +1,11 @@
 package br.gov.sp.fatec.projetomaven.dao;
 
+import java.util.Date;
+import java.util.List;
+
 import br.gov.sp.fatec.projetomaven.entity.Player;
 import br.gov.sp.fatec.projetomaven.entity.Team;
 import br.gov.sp.fatec.projetomaven.entity.enums.PositionEnum;
-
-import java.util.Date;
 
 public interface PlayerDao {
     
@@ -14,6 +15,8 @@ public interface PlayerDao {
     public Player savePlayer (Player player);
     //Salvar jogador sem commit
     public Player savePlayerWithoutCommit (Player player);
+    //Buscar jogador por time
+    public List<Player> searchPlayersByTeam (Team team);
 
 
 

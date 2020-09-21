@@ -1,13 +1,16 @@
 package br.gov.sp.fatec.projetomaven.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceException;
+import javax.persistence.TypedQuery;
 
 import br.gov.sp.fatec.projetomaven.entity.Team;
 import br.gov.sp.fatec.projetomaven.entity.enums.ConferenceEnum;
 
 public class TeamDaoJpa implements TeamDao {
-    
+
     private EntityManager em;
 
     @Override
@@ -26,8 +29,7 @@ public class TeamDaoJpa implements TeamDao {
             saveTeamWithoutCommit(team);
             em.getTransaction().commit();
             return team;
-        }
-        catch(PersistenceException e) {
+        } catch (PersistenceException e) {
             e.printStackTrace();
             em.getTransaction().rollback();
             throw new RuntimeException("Erro ao salvar Equipe!", e);
@@ -36,13 +38,20 @@ public class TeamDaoJpa implements TeamDao {
 
     @Override
     public Team saveTeamWithoutCommit(Team team) {
-        if(team.getId() == null) {
+        if (team.getId() == null) {
             em.persist(team);
-        }
-        else {
+        } else {
             em.merge(team);
         }
         return team;
+    }
+
+    @Override
+    public List<Team> searchTeamsByConference(ConferenceEnum conference) {
+        String jpql = "select t from Team t where t.teamConference = :conference";
+        TypedQuery<Team> query = em.createQuery(jpql, Team.class);
+        query.setParameter("conference", conference);
+        return query.getResultList();
     }
 
     

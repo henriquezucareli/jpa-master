@@ -1,9 +1,10 @@
 package br.gov.sp.fatec.projetomaven.dao;
 
+import java.util.Date;
+import java.util.List;
+
 import br.gov.sp.fatec.projetomaven.entity.Staff;
 import br.gov.sp.fatec.projetomaven.entity.Team;
-
-import java.util.Date;
 
 public interface StaffDao {
     
@@ -13,5 +14,7 @@ public interface StaffDao {
     public Staff saveStaff (Staff staff);
     //Salvar staff sem commit
     public Staff saveStaffWithoutCommit (Staff staff);
+    //Buscar staff por time
+    public List<Staff> searchStaffsByTeam (Team team);
 
 }

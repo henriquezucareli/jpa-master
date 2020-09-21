@@ -1,9 +1,11 @@
 package br.gov.sp.fatec.projetomaven.dao;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceException;
+import javax.persistence.TypedQuery;
 
 import br.gov.sp.fatec.projetomaven.entity.Staff;
 import br.gov.sp.fatec.projetomaven.entity.Team;
@@ -31,8 +33,7 @@ public class StaffDaoJpa implements StaffDao {
             saveStaffWithoutCommit(staff);
             em.getTransaction().commit();
             return staff;
-        }
-        catch(PersistenceException e) {
+        } catch (PersistenceException e) {
             e.printStackTrace();
             em.getTransaction().rollback();
             throw new RuntimeException("Erro ao salvar Staff!", e);
@@ -41,13 +42,22 @@ public class StaffDaoJpa implements StaffDao {
 
     @Override
     public Staff saveStaffWithoutCommit(Staff staff) {
-        if(staff.getId() == null) {
+        if (staff.getId() == null) {
             em.persist(staff);
-        }
-        else {
+        } else {
             em.merge(staff);
         }
         return staff;
     }
+
+    @Override
+    public List<Staff> searchStaffsByTeam(Team team) {
+        String jpql = "select s from Staff s INNER JOIN s.rosterTeam t where t.id = :id";
+        TypedQuery<Staff> query = em.createQuery(jpql, Staff.class);
+        query.setParameter("id", team.getId());
+        return query.getResultList();
+    }
+
+    
     
 }
