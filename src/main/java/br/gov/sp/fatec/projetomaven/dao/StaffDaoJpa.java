@@ -41,7 +41,7 @@ public class StaffDaoJpa implements StaffDao {
 
     @Override
     public Staff saveStaffWithoutCommit(Staff staff) {
-        if(staff.getRosterId() == null) {
+        if(staff.getId() == null) {
             em.persist(staff);
         }
         else {

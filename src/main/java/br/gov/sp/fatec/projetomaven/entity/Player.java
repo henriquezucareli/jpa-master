@@ -1,16 +1,15 @@
 package br.gov.sp.fatec.projetomaven.entity;
 
+import java.util.List;
+
+import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-
-import java.util.List;
-
-import javax.persistence.Column;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
@@ -18,12 +17,11 @@ import br.gov.sp.fatec.projetomaven.entity.enums.PositionEnum;
 
 @Table(name = "pla_player")
 @Entity
-@PrimaryKeyJoinColumn(name = "pla_id")
-public class Player extends Roster{
+@PrimaryKeyJoinColumn(name = "id")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "pla_position")
+public abstract class Player extends Roster{
     
-    @Enumerated(EnumType.STRING)
-    @Column(name = "pla_position")
-    private PositionEnum playerPosition;
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "pla_historic", 
         joinColumns = @JoinColumn(name = "pla_id"),
@@ -31,13 +29,8 @@ public class Player extends Roster{
     )
     private List<Team> historic;
 
-    public PositionEnum getPlayerPosition() {
-        return playerPosition;
-    }
+    public abstract PositionEnum getPosition();
 
-    public void setPlayerPosition(PositionEnum playerPosition) {
-        this.playerPosition = playerPosition;
-    }
 
 	public List<Team> getHistoric() {
 		return historic;

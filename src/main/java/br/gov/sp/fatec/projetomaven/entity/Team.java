@@ -1,30 +1,21 @@
 package br.gov.sp.fatec.projetomaven.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-
 import java.util.List;
 
 import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import br.gov.sp.fatec.projetomaven.entity.enums.ConferenceEnum;
 
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-
 @Table(name = "tea_team")
 @Entity
-public class Team {
+public class Team extends Identification {
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "tea_id")
-    private String teamId;
     @Column(name = "tea_city")
     private String teamCity;
     @Column(name = "tea_name")
@@ -38,14 +29,6 @@ public class Team {
     private List<Staff> staffs;
     @ManyToMany(mappedBy = "historic")
     private List<Player> historic;
-
-    public String getTeamId() {
-        return teamId;
-    }
-
-    public void setTeamId(String teamId) {
-        this.teamId = teamId;
-    }
 
     public String getTeamCity() {
         return teamCity;

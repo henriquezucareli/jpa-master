@@ -1,4 +1,4 @@
-package br.gov.sp.fatec.projetomaven.entity;
+package br.gov.sp.fatec.projetomaven.dao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

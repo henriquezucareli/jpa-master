@@ -1,13 +1,18 @@
 package br.gov.sp.fatec.projetomaven.dao;
 
-import br.gov.sp.fatec.projetomaven.entity.Player;
-import br.gov.sp.fatec.projetomaven.entity.Team;
-import br.gov.sp.fatec.projetomaven.entity.enums.PositionEnum;
-import br.gov.sp.fatec.projetomaven.entity.PersistenceManager;
+import java.util.Date;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceException;
 
-import java.util.Date;
+import br.gov.sp.fatec.projetomaven.entity.Player;
+import br.gov.sp.fatec.projetomaven.entity.Team;
+import br.gov.sp.fatec.projetomaven.entity.enums.PositionEnum;
+import br.gov.sp.fatec.projetomaven.entity.player.Center;
+import br.gov.sp.fatec.projetomaven.entity.player.PointGuard;
+import br.gov.sp.fatec.projetomaven.entity.player.PowerForward;
+import br.gov.sp.fatec.projetomaven.entity.player.ShootingGuard;
+import br.gov.sp.fatec.projetomaven.entity.player.SmallForward;
 
 public class PlayerDaoJpa implements PlayerDao {
     
@@ -23,10 +28,9 @@ public class PlayerDaoJpa implements PlayerDao {
 
     @Override
     public Player registerPlayer(String firstName, String lastName, PositionEnum position, float salary, Date born, Team team) {
-        Player player = new Player();
+        Player player = createPlayer(position);
         player.setRosterFirstName(firstName);
         player.setRosterLastName(lastName);
-        player.setPlayerPosition(position);
         player.setRosterSalary(salary);
         player.setRosterBorn(born);
         player.setRosterTeam(team);
@@ -50,13 +54,30 @@ public class PlayerDaoJpa implements PlayerDao {
 
     @Override
     public Player savePlayerWithoutCommit(Player player) {
-        if(player.getRosterId() == null) {
+        if(player.getId() == null) {
             em.persist(player);
         }
         else {
             em.merge(player);
         }
         return player;
+    }
+
+    private Player createPlayer (PositionEnum position) {
+        switch (position) {
+            case CENTER:
+                return new Center();
+            case POWER_FORWARD:
+                return new PowerForward();
+            case SMALL_FORWARD:
+                return new SmallForward();
+            case SHOOTING_GUARD:
+                return new ShootingGuard();
+            case POINT_GUARD:
+                return new PointGuard();
+            default:
+                throw new IllegalArgumentException();
+        }
     }
 
 }

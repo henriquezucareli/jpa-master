@@ -36,7 +36,7 @@ public class TeamDaoJpa implements TeamDao {
 
     @Override
     public Team saveTeamWithoutCommit(Team team) {
-        if(team.getTeamId() == null) {
+        if(team.getId() == null) {
             em.persist(team);
         }
         else {

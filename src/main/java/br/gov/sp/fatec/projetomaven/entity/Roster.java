@@ -1,28 +1,22 @@
 package br.gov.sp.fatec.projetomaven.entity;
 
-import javax.persistence.Entity;
+import java.util.Date;
+
 import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.Table;
-import java.util.Date;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.FetchType;
+import javax.persistence.Table;
 
 
 @Table(name = "ros_roster")
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Roster {
+public abstract class Roster extends Identification {
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ros_id")
-    private Long rosterId;
     @Column(name = "ros_first_name")
     private String rosterFirstName;
     @Column(name = "ros_last_name")
@@ -34,14 +28,6 @@ public abstract class Roster {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "tea_id")
     private Team rosterTeam;
-
-    public Long getRosterId() {
-        return rosterId;
-    }
-
-    public void setRosterId(Long rosterId) {
-        this.rosterId = rosterId;
-    }
 
     public String getRosterFirstName() {
         return rosterFirstName;

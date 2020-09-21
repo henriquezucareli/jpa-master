@@ -8,7 +8,7 @@ import javax.persistence.Table;
 
 @Table(name = "sta_staff")
 @Entity
-@PrimaryKeyJoinColumn(name = "ros_id")
+@PrimaryKeyJoinColumn(name = "id")
 public class Staff extends Roster{
     
     @Column(name = "sta_function")
