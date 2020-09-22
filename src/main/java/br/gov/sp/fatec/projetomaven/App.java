@@ -10,6 +10,7 @@ import javax.persistence.PersistenceException;
 import javax.persistence.TypedQuery;
 
 import br.gov.sp.fatec.projetomaven.dao.PersistenceManager;
+import br.gov.sp.fatec.projetomaven.entity.Player;
 import br.gov.sp.fatec.projetomaven.entity.Staff;
 import br.gov.sp.fatec.projetomaven.entity.Team;
 import br.gov.sp.fatec.projetomaven.entity.enums.ConferenceEnum;
@@ -19,13 +20,7 @@ public class App
     public static void main( String[] args )
     {
         EntityManager manager = PersistenceManager.getInstance().getEntityManager();
-
-        // Instancia uma nova equipe
-        Team team = new Team();
-        team.setTeamConference(ConferenceEnum.EAST);
-        team.setTeamCity("SAN_ANTONIO");
-        team.setTeamName("SPURS");        
-        
+     
         // Instancia um novo staff
         Staff staff = new Staff();
         staff.setRosterFirstName("Gregg");
@@ -33,10 +28,20 @@ public class App
         staff.setRosterBorn(new Date(28/01/1949));
         staff.setRosterSalary(20000);
         staff.setStaffFunction("Coach");
-        staff.setRosterTeam();
+        // Instancia uma nova equipe
+        Team team = new Team();
+        team.setTeamConference(ConferenceEnum.WEST);
+        team.setTeamCity("SAN_ANTONIO");
+        team.setTeamName("SPURS");
+        team.setId(1L);
+        // Vincula staff à equipe
+        staff.setRosterTeam(team);
 
-        // Instancia um novo trabalho
-        Trabalho trabalho = new Trabalho();
+
+
+
+        // Instancia um novo Jogador
+        Player player = new player(create);
         trabalho.setTitulo("Trabalho 2 - JPA");
         trabalho.setDataHoraEntrega(new Date());
         trabalho.setLocalArquivo("trabalhos");
