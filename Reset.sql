@@ -1,14 +1,14 @@
 drop user 'user'@'localhost';
 
-drop schema nba_organization;
+drop schema avaliacao;
 
-create schema nba_organization;
+create schema avaliacao;
 
-use nba_organization;
+use avaliacao;
 
 create user 'user'@'localhost' identified by 'pass123';
 
-grant select, insert, delete, update on nba_organization.* to user@'localhost';
+grant select, insert, delete, update on avaliacao.* to user@'localhost';
 
 create table tea_team (
     id bigint primary key auto_increment,
