@@ -22,24 +22,27 @@ create table ros_roster (
     ros_first_name varchar(50) not null,
     ros_last_name varchar(50) not null,
     ros_salary float not null,
-    ros_born datetime not null,
-    tea_id bigint,
-    constraint ros_tea_fk foreign key (tea_id)
-        references tea_team (id)
+    ros_born datetime not null
 );
 
 create table pla_player (
     id bigint primary key,
     pla_position varchar(15) not null,
+    tea_id bigint,
     constraint pla_ros_fk foreign key (id)
-        references ros_roster (id)
+        references ros_roster (id),
+    constraint pla_tea_fk foreign key (tea_id)
+        references tea_team (id)
 );
 
 create table sta_staff (
     id bigint primary key,
     sta_function varchar(30) not null,
+    tea_id bigint,
     constraint sta_ros_fk foreign key (id)
-        references ros_roster (id)
+        references ros_roster (id),
+    constraint sta_tea_fk foreign key (tea_id)
+        references tea_team (id)
 );
 
 create table pla_historic (

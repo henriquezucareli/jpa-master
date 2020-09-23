@@ -10,6 +10,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
@@ -22,6 +23,9 @@ import br.gov.sp.fatec.projetomaven.entity.enums.PositionEnum;
 @DiscriminatorColumn(name = "pla_position")
 public abstract class Player extends Roster{
     
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "tea_id")
+    private Team playerTeam;
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "pla_historic", 
         joinColumns = @JoinColumn(name = "pla_id"),
@@ -39,6 +43,14 @@ public abstract class Player extends Roster{
 	public void setHistoric(List<Team> historic) {
 		this.historic = historic;
 	}
+
+    public Team getPlayerTeam() {
+        return playerTeam;
+    }
+
+    public void setPlayerTeam(Team playerTeam) {
+        this.playerTeam = playerTeam;
+    }
 
     
 

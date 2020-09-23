@@ -36,7 +36,6 @@ public class PlayerDaoJpa implements PlayerDao {
         player.setRosterLastName(lastName);
         player.setRosterSalary(salary);
         player.setRosterBorn(born);
-        player.setRosterTeam(team);
         return savePlayer(player);
     }
 

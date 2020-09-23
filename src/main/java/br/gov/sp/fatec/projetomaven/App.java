@@ -38,7 +38,7 @@ public class App
         //Registra Staff
         Staff pop = staffDao.registerStaff("Gregg", "Popovich", "Head Coach", 8000000f, new Date(28/1/1949), sas);
         Staff duncan = staffDao.registerStaff("Tim", "Duncan", "Assistant Coach", 1000000f, new Date(25/4/1976), sas);
-        Staff thib = staffDao.registerStaff("Tom", "Thibodeau", "Head Coach", 0f, new Date(17/1/1958), null);
+        Staff thib = staffDao.registerStaff("Tom", "Thibodeau", "Head Coach", 0f, new Date(17/1/1958), phx);
 
 
         //Busca jogador por time

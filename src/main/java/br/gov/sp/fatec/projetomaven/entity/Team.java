@@ -23,9 +23,9 @@ public class Team extends Identification {
     @Enumerated(EnumType.STRING)
     @Column(name = "tea_conference")
     private ConferenceEnum teamConference;
-    @OneToMany(mappedBy = "rosterTeam")
+    @OneToMany(mappedBy = "playerTeam")
     private List<Player> players;
-    @OneToMany(mappedBy = "rosterTeam")
+    @OneToMany(mappedBy = "staffTeam")
     private List<Staff> staffs;
     @ManyToMany(mappedBy = "historic")
     private List<Player> historic;

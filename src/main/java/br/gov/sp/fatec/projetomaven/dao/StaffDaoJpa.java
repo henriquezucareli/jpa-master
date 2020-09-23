@@ -22,7 +22,6 @@ public class StaffDaoJpa implements StaffDao {
         staff.setStaffFunction(function);
         staff.setRosterSalary(salary);
         staff.setRosterBorn(born);
-        staff.setRosterTeam(team);
         return saveStaff(staff);
     }
 
