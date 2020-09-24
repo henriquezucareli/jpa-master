@@ -26,11 +26,13 @@ create table ros_roster (
 );
 
 create table pla_player (
-    id bigint primary key,
+    id bigint primary key auto_increment,
     pla_position varchar(15) not null,
+    pla_first_name varchar(50) not null,
+    pla_last_name varchar(50) not null,
+    pla_salary float not null,
+    pla_born datetime not null,
     tea_id bigint,
-    constraint pla_ros_fk foreign key (id)
-        references ros_roster (id),
     constraint pla_tea_fk foreign key (tea_id)
         references tea_team (id)
 );

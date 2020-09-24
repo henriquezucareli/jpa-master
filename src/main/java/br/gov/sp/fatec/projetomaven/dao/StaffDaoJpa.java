@@ -59,7 +59,7 @@ public class StaffDaoJpa implements StaffDao {
 
     @Override
     public List<Staff> searchStaffsByTeam(Team team) {
-        String jpql = "select s from Staff s INNER JOIN s.rosterTeam t where t.id = :id";
+        String jpql = "select s from Staff s INNER JOIN s.staffTeam t where t.id = :id";
         TypedQuery<Staff> query = em.createQuery(jpql, Staff.class);
         query.setParameter("id", team.getId());
         return query.getResultList();

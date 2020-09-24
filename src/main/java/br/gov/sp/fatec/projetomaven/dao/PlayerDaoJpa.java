@@ -32,10 +32,10 @@ public class PlayerDaoJpa implements PlayerDao {
     public Player registerPlayer(String firstName, String lastName, PositionEnum position, float salary, Date born,
             Team team) {
         Player player = createPlayer(position);
-        player.setRosterFirstName(firstName);
-        player.setRosterLastName(lastName);
-        player.setRosterSalary(salary);
-        player.setRosterBorn(born);
+        player.setFirstName(firstName);
+        player.setLastName(lastName);
+        player.setSalary(salary);
+        player.setBorn(born);
         return savePlayer(player);
     }
 
@@ -82,7 +82,7 @@ public class PlayerDaoJpa implements PlayerDao {
 
     @Override
     public List<Player> searchPlayersByTeam(Team team) {
-        String jpql = "select p from Player p INNER JOIN p.rosterTeam t where t.id = :id";
+        String jpql = "select p from Player p INNER JOIN p.playerTeam t where t.id = :id";
         TypedQuery<Player> query = em.createQuery(jpql, Player.class);
         query.setParameter("id", team.getId());
         return query.getResultList();

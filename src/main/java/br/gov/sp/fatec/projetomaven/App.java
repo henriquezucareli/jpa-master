@@ -40,13 +40,13 @@ public class App
 
 
         //Busca jogador por time
-        playerDao.searchPlayersByTeam (mia);
+        System.out.println(playerDao.searchPlayersByTeam (mia));
 
         //Busca Equipe por Conferência
-        teamDao.searchTeamsByConference (ConferenceEnum.WEST);
+        System.out.println(teamDao.searchTeamsByConference (ConferenceEnum.WEST));
 
         //Busca Staff por time
-        staffDao.searchStaffsByTeam(sas);
+        System.out.println(staffDao.searchStaffsByTeam(sas));
 
     }
 }
