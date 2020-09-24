@@ -14,6 +14,14 @@ public class StaffDaoJpa implements StaffDao {
 
     private EntityManager em;
 
+    public StaffDaoJpa() {
+        this(PersistenceManager.getInstance().getEntityManager());
+    }
+
+    public StaffDaoJpa(EntityManager em) {
+        this.em = em;
+    }
+
     @Override
     public Staff registerStaff(String firstName, String lastName, String function, float salary, Date born, Team team) {
         Staff staff = new Staff();

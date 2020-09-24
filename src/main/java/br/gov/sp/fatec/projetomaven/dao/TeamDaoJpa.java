@@ -13,6 +13,14 @@ public class TeamDaoJpa implements TeamDao {
 
     private EntityManager em;
 
+    public TeamDaoJpa() {
+        this(PersistenceManager.getInstance().getEntityManager());
+    }
+
+    public TeamDaoJpa(EntityManager em) {
+        this.em = em;
+    }
+
     @Override
     public Team registerTeam(String teamCity, String teamName, ConferenceEnum teamConference) {       
         Team team = new Team();
@@ -53,9 +61,4 @@ public class TeamDaoJpa implements TeamDao {
         query.setParameter("conference", conference);
         return query.getResultList();
     }
-
-    
-
-    
-
 }
