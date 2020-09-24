@@ -1,6 +1,6 @@
 package br.gov.sp.fatec.projetomaven.entity;
 
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -14,6 +14,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import br.gov.sp.fatec.projetomaven.entity.enums.PositionEnum;
 
@@ -30,7 +32,8 @@ public abstract class Player extends Identification{
     @Column(name = "pla_salary")
     private float salary;
     @Column(name = "pla_born")
-    private Date born;
+    @Temporal(TemporalType.DATE)
+    private Calendar born;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "tea_id")
     private Team playerTeam;
@@ -84,11 +87,11 @@ public abstract class Player extends Identification{
         this.salary = salary;
     }
 
-    public Date getBorn() {
+    public Calendar getBorn() {
         return born;
     }
 
-    public void setBorn(Date born) {
+    public void setBorn(Calendar born) {
         this.born = born;
     }
 

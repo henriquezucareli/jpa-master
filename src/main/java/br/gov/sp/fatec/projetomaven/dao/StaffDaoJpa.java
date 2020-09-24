@@ -1,6 +1,6 @@
 package br.gov.sp.fatec.projetomaven.dao;
 
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -23,13 +23,14 @@ public class StaffDaoJpa implements StaffDao {
     }
 
     @Override
-    public Staff registerStaff(String firstName, String lastName, String function, float salary, Date born, Team team) {
+    public Staff registerStaff(String firstName, String lastName, String function, float salary, Calendar born, Team team) {
         Staff staff = new Staff();
         staff.setRosterFirstName(firstName);
         staff.setRosterLastName(lastName);
         staff.setStaffFunction(function);
         staff.setRosterSalary(salary);
         staff.setRosterBorn(born);
+        staff.setStaffTeam(team);
         return saveStaff(staff);
     }
 

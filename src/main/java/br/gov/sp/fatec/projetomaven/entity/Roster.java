@@ -1,12 +1,14 @@
 package br.gov.sp.fatec.projetomaven.entity;
 
-import java.util.Date;
+import java.util.Calendar;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 @Table(name = "ros_roster")
@@ -21,7 +23,8 @@ public abstract class Roster extends Identification {
     @Column(name = "ros_salary")
     private float rosterSalary;
     @Column(name = "ros_born")
-    private Date rosterBorn;
+    @Temporal(TemporalType.DATE)
+    private Calendar rosterBorn;
 
     public String getRosterFirstName() {
         return rosterFirstName;
@@ -47,11 +50,11 @@ public abstract class Roster extends Identification {
         this.rosterSalary = rosterSalary;
     }
 
-    public Date getRosterBorn() {
+    public Calendar getRosterBorn() {
         return rosterBorn;
     }
 
-    public void setRosterBorn(Date rosterBorn) {
+    public void setRosterBorn(Calendar rosterBorn) {
         this.rosterBorn = rosterBorn;
     }
 

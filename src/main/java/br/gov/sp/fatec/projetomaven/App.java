@@ -1,6 +1,6 @@
 package br.gov.sp.fatec.projetomaven;
 
-import java.util.Date;
+import java.util.Calendar;
 
 import br.gov.sp.fatec.projetomaven.dao.PlayerDao;
 import br.gov.sp.fatec.projetomaven.dao.PlayerDaoJpa;
@@ -28,15 +28,15 @@ public class App
         Team phx = teamDao.registerTeam("Phoenix", "Suns", ConferenceEnum.WEST);
 
         //Registra Jogadores
-        playerDao.registerPlayer("Tyler", "Herro", PositionEnum.SHOOTING_GUARD, 3640200f, new Date(20/1/2000), mia);
-        playerDao.registerPlayer("Jimmy", "Butler", PositionEnum.SMALL_FORWARD, 32740000f, new Date(14/9/1989), mia);
-        playerDao.registerPlayer("Edrice", "Adebayo", PositionEnum.CENTER, 3454080f, new Date(18/7/1997), mia);
-        playerDao.registerPlayer("Dejounte", "Murray", PositionEnum.POINT_GUARD, 2321735f, new Date(19/7/1996), sas);
+        playerDao.registerPlayer("Tyler", "Herro", PositionEnum.SHOOTING_GUARD, 3640200f, getByDate(2000,1,20), mia);
+        playerDao.registerPlayer("Jimmy", "Butler", PositionEnum.SMALL_FORWARD, 32740000f, getByDate(1989,9,14), mia);
+        playerDao.registerPlayer("Edrice", "Adebayo", PositionEnum.CENTER, 3454080f, getByDate(1997,7,18), mia);
+        playerDao.registerPlayer("Dejounte", "Murray", PositionEnum.POINT_GUARD, 2321735f, getByDate(1996,7,19), sas);
         
         //Registra Staff
-        staffDao.registerStaff("Gregg", "Popovich", "Head Coach", 8000000f, new Date(28/1/1949), sas);
-        staffDao.registerStaff("Tim", "Duncan", "Assistant Coach", 1000000f, new Date(25/4/1976), sas);
-        staffDao.registerStaff("Tom", "Thibodeau", "Head Coach", 0f, new Date(17/1/1958), phx);
+        staffDao.registerStaff("Gregg", "Popovich", "Head Coach", 8000000f, getByDate(1949,1,28), sas);
+        staffDao.registerStaff("Tim", "Duncan", "Assistant Coach", 1000000f, getByDate(1976,4,25), sas);
+        staffDao.registerStaff("Tom", "Thibodeau", "Head Coach", 0f, getByDate(1958,1,17), phx);
 
 
         //Busca jogador por time
@@ -48,5 +48,12 @@ public class App
         //Busca Staff por time
         System.out.println(staffDao.searchStaffsByTeam(sas));
 
+
+    }
+
+    private static Calendar getByDate(int year, int month, int day) {
+        Calendar born = Calendar.getInstance();
+        born.set(year, month, day);
+        return born;
     }
 }

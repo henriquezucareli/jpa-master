@@ -1,6 +1,6 @@
 package br.gov.sp.fatec.projetomaven.dao;
 
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -29,13 +29,14 @@ public class PlayerDaoJpa implements PlayerDao {
     }
 
     @Override
-    public Player registerPlayer(String firstName, String lastName, PositionEnum position, float salary, Date born,
+    public Player registerPlayer(String firstName, String lastName, PositionEnum position, float salary, Calendar born,
             Team team) {
         Player player = createPlayer(position);
         player.setFirstName(firstName);
         player.setLastName(lastName);
         player.setSalary(salary);
         player.setBorn(born);
+        player.setPlayerTeam(team);
         return savePlayer(player);
     }
 
