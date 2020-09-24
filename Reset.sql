@@ -22,7 +22,7 @@ create table ros_roster (
     ros_first_name varchar(50) not null,
     ros_last_name varchar(50) not null,
     ros_salary float not null,
-    ros_born datetime not null
+    ros_born date not null
 );
 
 create table pla_player (
@@ -31,7 +31,7 @@ create table pla_player (
     pla_first_name varchar(50) not null,
     pla_last_name varchar(50) not null,
     pla_salary float not null,
-    pla_born datetime not null,
+    pla_born date not null,
     tea_id bigint,
     constraint pla_tea_fk foreign key (tea_id)
         references tea_team (id)
