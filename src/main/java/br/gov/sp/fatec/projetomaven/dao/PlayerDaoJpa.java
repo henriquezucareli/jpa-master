@@ -89,4 +89,12 @@ public class PlayerDaoJpa implements PlayerDao {
         return query.getResultList();
     }
 
+    @Override
+    public List searchPlayersByTeamAndPosition(Team team, PositionEnum position) {
+        String jpql = "select p from " + position.getPositionClassName() + " p INNER JOIN p.playerTeam t where t.id = :id";
+        TypedQuery<?> query = em.createQuery(jpql, position.getPositionClass());
+        query.setParameter("id", team.getId());
+        return query.getResultList();
+    }
+
 }

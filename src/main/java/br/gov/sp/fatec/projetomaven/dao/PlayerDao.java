@@ -17,6 +17,8 @@ public interface PlayerDao {
     public Player savePlayerWithoutCommit (Player player);
     //Buscar jogador por time
     public List<Player> searchPlayersByTeam (Team team);
+    //Busca jogador por time e posição
+    public List<Player> searchPlayersByTeamAndPosition(Team team, PositionEnum position);
 
 
 

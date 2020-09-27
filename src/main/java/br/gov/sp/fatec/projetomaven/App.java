@@ -48,6 +48,8 @@ public class App
         //Busca Staff por time
         System.out.println(staffDao.searchStaffsByTeam(sas));
 
+        //Busca jogador por time e posição
+        playerDao.searchPlayersByTeamAndPosition(mia, PositionEnum.SHOOTING_GUARD);
 
     }
 
