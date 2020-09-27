@@ -3,6 +3,7 @@ package br.gov.sp.fatec.projetomaven.entity;
 import java.util.Calendar;
 import java.util.List;
 
+import javax.persistence.AttributeOverride;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
@@ -23,6 +24,7 @@ import br.gov.sp.fatec.projetomaven.entity.enums.PositionEnum;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "pla_position")
+@AttributeOverride(name = "id", column = @Column(name = "pla_id"))
 public abstract class Player extends Identification{
     
     @Column(name = "pla_first_name")

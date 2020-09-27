@@ -2,6 +2,7 @@ package br.gov.sp.fatec.projetomaven.entity;
 
 import java.util.Calendar;
 
+import javax.persistence.AttributeOverride;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
@@ -14,6 +15,7 @@ import javax.persistence.TemporalType;
 @Table(name = "ros_roster")
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
+@AttributeOverride(name = "id", column = @Column(name = "ros_id"))
 public abstract class Roster extends Identification {
     
     @Column(name = "ros_first_name")

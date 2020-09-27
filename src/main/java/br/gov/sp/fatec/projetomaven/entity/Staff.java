@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @Table(name = "sta_staff")
 @Entity
-@PrimaryKeyJoinColumn(name = "id")
+@PrimaryKeyJoinColumn(name = "sta_id")
 public class Staff extends Roster{
     
     @Column(name = "sta_function")

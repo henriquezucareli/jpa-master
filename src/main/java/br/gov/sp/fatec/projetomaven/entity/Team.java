@@ -2,6 +2,7 @@ package br.gov.sp.fatec.projetomaven.entity;
 
 import java.util.List;
 
+import javax.persistence.AttributeOverride;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -14,6 +15,7 @@ import br.gov.sp.fatec.projetomaven.entity.enums.ConferenceEnum;
 
 @Table(name = "tea_team")
 @Entity
+@AttributeOverride(name = "id", column = @Column(name = "tea_id"))
 public class Team extends Identification {
     
     @Column(name = "tea_city")

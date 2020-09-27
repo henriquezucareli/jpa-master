@@ -1,6 +1,5 @@
 package br.gov.sp.fatec.projetomaven.entity;
 
-import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,7 +10,6 @@ public abstract class Identification {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Long id;
 
     public Long getId() {
