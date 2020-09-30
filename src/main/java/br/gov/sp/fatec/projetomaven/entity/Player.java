@@ -1,9 +1,11 @@
 package br.gov.sp.fatec.projetomaven.entity;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.AttributeOverride;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
@@ -39,12 +41,12 @@ public abstract class Player extends Identification{
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "tea_id")
     private Team playerTeam;
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(name = "pla_historic", 
         joinColumns = @JoinColumn(name = "pla_id"),
         inverseJoinColumns = @JoinColumn(name = "tea_id")
     )
-    private List<Team> historic;
+    private List<Team> historic = new ArrayList<>();
 
     public abstract PositionEnum getPosition();
 
@@ -97,6 +99,9 @@ public abstract class Player extends Identification{
         this.born = born;
     }
 
+    public void addToHistoric(Team team){
+        historic.add(team);
+    }
 
 
     
