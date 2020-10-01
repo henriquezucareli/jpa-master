@@ -37,6 +37,7 @@ public class PlayerDaoJpa implements PlayerDao {
         player.setSalary(salary);
         player.setBorn(born);
         player.setPlayerTeam(team);
+        player.addToHistoric(team);
         return savePlayer(player);
     }
 

@@ -1,6 +1,7 @@
 package br.gov.sp.fatec.projetomaven.entity;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.Column;
@@ -26,42 +27,46 @@ public class Team extends Identification {
     @Column(name = "tea_conference")
     private ConferenceEnum teamConference;
     @OneToMany(mappedBy = "playerTeam")
-    private List<Player> players;
+    private Set<Player> players;
     @OneToMany(mappedBy = "staffTeam")
-    private List<Staff> staffs;
+    private Set<Staff> staffs;
     @ManyToMany(mappedBy = "historic")
-    private List<Player> historic;
-
+    private Set<Player> historic = new HashSet<>();
+ 
     public String getTeamCity() {
         return teamCity;
     }
-
+ 
     public void setTeamCity(String teamCity) {
         this.teamCity = teamCity;
     }
-
+ 
     public String getTeamName() {
         return teamName;
     }
-
+ 
     public void setTeamName(String teamName) {
         this.teamName = teamName;
     }
-
+ 
     public ConferenceEnum getTeamConference() {
         return teamConference;
     }
-
+ 
     public void setTeamConference(ConferenceEnum teamConference) {
         this.teamConference = teamConference;
     }
-
-    public List<Player> getPlayers() {
+ 
+    public Set<Player> getPlayers() {
         return players;
     }
-
-    public List<Staff> getStaffs() {
+ 
+    public Set<Staff> getStaffs() {
         return staffs;
+    }
+ 
+    public Set<Player> getHistoric() {
+        return historic;
     }
     
 }

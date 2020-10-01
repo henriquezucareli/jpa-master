@@ -1,11 +1,10 @@
 package br.gov.sp.fatec.projetomaven.entity;
 
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.AttributeOverride;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
@@ -41,69 +40,67 @@ public abstract class Player extends Identification{
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "tea_id")
     private Team playerTeam;
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "pla_historic", 
         joinColumns = @JoinColumn(name = "pla_id"),
         inverseJoinColumns = @JoinColumn(name = "tea_id")
     )
-    private List<Team> historic = new ArrayList<>();
-
+    private Set<Team> historic = new HashSet<>();
+ 
     public abstract PositionEnum getPosition();
-
-
-	public List<Team> getHistoric() {
+ 
+ 
+	public Set<Team> getHistoric() {
 		return historic;
 	}
-
-	public void setHistoric(List<Team> historic) {
+ 
+	public void setHistoric(Set<Team> historic) {
 		this.historic = historic;
 	}
-
+ 
     public Team getPlayerTeam() {
         return playerTeam;
     }
-
+ 
     public void setPlayerTeam(Team playerTeam) {
         this.playerTeam = playerTeam;
     }
-
+ 
     public String getFirstName() {
         return firstName;
     }
-
+ 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
-
+ 
     public String getLastName() {
         return lastName;
     }
-
+ 
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-
+ 
     public float getSalary() {
         return salary;
     }
-
+ 
     public void setSalary(float salary) {
         this.salary = salary;
     }
-
+ 
     public Calendar getBorn() {
         return born;
     }
-
+ 
     public void setBorn(Calendar born) {
         this.born = born;
     }
-
+ 
     public void addToHistoric(Team team){
         historic.add(team);
-    }
-
-
-    
+        team.getHistoric().add(this);
+    }  
 
 }
