@@ -51,6 +51,9 @@ public class App
         //Busca jogador por time e posição
         playerDao.searchPlayersByTeamAndPosition(mia, PositionEnum.SHOOTING_GUARD);
 
+        //Busca jogador por conferência e salário
+        playerDao.searchPlayerByConferenceAndSalary(ConferenceEnum.WEST, 1000f);
+
     }
 
     private static Calendar getByDate(int year, int month, int day) {

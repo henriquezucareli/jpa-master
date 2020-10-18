@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.gov.sp.fatec.projetomaven.entity.Player;
 import br.gov.sp.fatec.projetomaven.entity.Team;
+import br.gov.sp.fatec.projetomaven.entity.enums.ConferenceEnum;
 import br.gov.sp.fatec.projetomaven.entity.enums.PositionEnum;
 
 public interface PlayerDao {
@@ -19,6 +20,8 @@ public interface PlayerDao {
     public List<Player> searchPlayersByTeam (Team team);
     //Busca jogador por time e posição
     public List<Player> searchPlayersByTeamAndPosition(Team team, PositionEnum position);
+    //Busca jogador por conferência e salário
+    public List<Player> searchPlayerByConferenceAndSalary(ConferenceEnum conference, float salary);
 
 
 

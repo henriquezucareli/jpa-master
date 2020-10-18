@@ -9,6 +9,7 @@ import javax.persistence.TypedQuery;
 
 import br.gov.sp.fatec.projetomaven.entity.Player;
 import br.gov.sp.fatec.projetomaven.entity.Team;
+import br.gov.sp.fatec.projetomaven.entity.enums.ConferenceEnum;
 import br.gov.sp.fatec.projetomaven.entity.enums.PositionEnum;
 import br.gov.sp.fatec.projetomaven.entity.player.Center;
 import br.gov.sp.fatec.projetomaven.entity.player.PointGuard;
@@ -95,6 +96,15 @@ public class PlayerDaoJpa implements PlayerDao {
         String jpql = "select p from " + position.getPositionClassName() + " p INNER JOIN p.playerTeam t where t.id = :id";
         TypedQuery<?> query = em.createQuery(jpql, position.getPositionClass());
         query.setParameter("id", team.getId());
+        return query.getResultList();
+    }
+
+    @Override
+    public List<Player> searchPlayerByConferenceAndSalary(ConferenceEnum conference, float salary) {
+        String jpql = "select p from Player p INNER JOIN p.playerTeam t where t.teamConference = :conference and p.salary >= :salary";
+        TypedQuery<Player> query = em.createQuery(jpql, Player.class);
+        query.setParameter("conference", conference);
+        query.setParameter("salary", salary);
         return query.getResultList();
     }
 
