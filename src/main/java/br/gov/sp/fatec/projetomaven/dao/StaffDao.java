@@ -6,7 +6,7 @@ import java.util.List;
 import br.gov.sp.fatec.projetomaven.entity.Staff;
 import br.gov.sp.fatec.projetomaven.entity.Team;
 
-public interface StaffDao {
+public interface StaffDao extends Dao<Staff> {
     
     //Cadastrar staff
     public Staff registerStaff (String firstName, String lastName, String function, float salary, Calendar born, Team team);
