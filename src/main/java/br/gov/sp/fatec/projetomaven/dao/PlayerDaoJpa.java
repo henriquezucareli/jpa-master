@@ -4,6 +4,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceException;
 import javax.persistence.TypedQuery;
 
@@ -108,4 +109,27 @@ public class PlayerDaoJpa implements PlayerDao {
         return query.getResultList();
     }
 
+    @Override
+    public List<Player> getAll() {
+        String jpql = "select p from Player p";
+        TypedQuery<Player> query = em.createQuery(jpql, Player.class);
+        return query.getResultList();
+    }
+
+    @Override
+    public Player getOne(Long id) {
+        String jpql = "select p from Player p where p.id = :id";
+        TypedQuery<Player> query = em.createQuery(jpql, Player.class);
+        query.setParameter("id", id);
+        try {
+            return query.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+
+    @Override
+    public void delete(Long id) {
+
+    }
 }

@@ -4,9 +4,11 @@ import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceException;
 import javax.persistence.TypedQuery;
 
+import br.gov.sp.fatec.projetomaven.entity.Player;
 import br.gov.sp.fatec.projetomaven.entity.Staff;
 import br.gov.sp.fatec.projetomaven.entity.Team;
 
@@ -66,6 +68,28 @@ public class StaffDaoJpa implements StaffDao {
         return query.getResultList();
     }
 
-    
-    
+    @Override
+    public List<Staff> getAll() {
+        String jpql = "select s from Staff s";
+        TypedQuery<Staff> query = em.createQuery(jpql, Staff.class);
+        return query.getResultList();
+    }
+
+    @Override
+    public Staff getOne(Long id) {
+        String jpql = "select s from Staff s where s.id = :id";
+        TypedQuery<Staff> query = em.createQuery(jpql, Staff.class);
+        query.setParameter("id", id);
+        try {
+            return query.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+
+    @Override
+    public void delete(Long id) {
+
+    }
+
 }

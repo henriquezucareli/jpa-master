@@ -2,10 +2,6 @@ create schema avaliacao;
 
 use avaliacao;
 
-create user 'user'@'localhost' identified by 'pass123';
-
-grant select, insert, delete, update on avaliacao.* to user@'localhost';
-
 create table tea_team (
     tea_id bigint primary key auto_increment,
     tea_city varchar(30) not null,

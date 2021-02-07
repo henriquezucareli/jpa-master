@@ -36,6 +36,7 @@ public class Staff extends Roster{
         this.staffTeam = staffTeam;
     }
 
-    
-
+    public String toJson() {
+        return "{}";
+    }
 }

@@ -5,7 +5,7 @@ import java.util.List;
 import br.gov.sp.fatec.projetomaven.entity.Team;
 import br.gov.sp.fatec.projetomaven.entity.enums.ConferenceEnum;
 
-public interface TeamDao {
+public interface TeamDao extends Dao<Team> {
     
     //Cadastrar equipe
     public Team registerTeam (String teamCity, String teamName, ConferenceEnum teamConference);

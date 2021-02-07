@@ -8,7 +8,7 @@ import br.gov.sp.fatec.projetomaven.entity.Team;
 import br.gov.sp.fatec.projetomaven.entity.enums.ConferenceEnum;
 import br.gov.sp.fatec.projetomaven.entity.enums.PositionEnum;
 
-public interface PlayerDao {
+public interface PlayerDao extends Dao<Player> {
     
     //Cadastrar jogador
     public Player registerPlayer (String firstName, String lastName, PositionEnum position, float salary, Calendar born, Team team);
